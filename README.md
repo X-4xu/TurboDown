@@ -1,143 +1,112 @@
-# ⬇️ TurboDown - Ultimate Download Manager
+# ⬇️ TurboDown - Ultimate Download Manager & Accelerator
 
-**TurboDown** هو برنامج مدير تحميل متكامل، قوي، ومفتوح المصدر مكتوب بلغة بايثون. تم تصميمه ليكون أقوى وأسرع مدير تحميل مجاني، مع واجهة مستخدم رسومية حديثة ومظلمة (Dark-Themed GUI) ونظام تحميل متوازي فائق السرعة.
+<p align="center">
+  <img src="assets/banner.png" alt="TurboDown Banner" width="100%" style="border-radius: 8px;" />
+</p>
 
----
-
-## 🚀 الميزات الخارقة (Key Features)
-
-1. **التحميل متعدد القنوات فائق السرعة (64-128 Multi-threaded Downloading):**
-   * يقوم المحرك بتقسيم الملف تلقائيًا إلى **64 اتصالاً متزامنًا** (وقابل للزيادة حتى **128 اتصالاً**) لتحقيق السرعة القصوى لخط الإنترنت لديك.
-2. **استقرار تام ونظام إيقاف/استئناف ذكي (Cooperative Resume/Pause):**
-   * إعادة تصميم كاملة لمحرك التحميل ليدعم إيقاف التحميل واستئنافه بشكل فوري وبدون أي مشاكل أو تلف للملفات.
-3. **نظام إعادة المحاولة التلقائي (Auto-Retry with Backoff):**
-   * عند حدوث أي انقطاع في الاتصال، يقوم التطبيق بإعادة المحاولة تلقائيًا حتى **10 مرات** مع زيادة ذكية في زمن الانتظار (Exponential Backoff) لضمان اكتمال التحميل.
-4. **جالب فيديوهات يوتيوب الاحترافي (YouTube Video Grabber):**
-   * يتيح لك تحميل الفيديوهات بأي جودة (4K, 1080p, 720p) أو تحميل الصوت فقط (MP3, M4A) بضغطة زر واحدة.
-5. **مراقب الحافظة الذكي (Clipboard Monitor):**
-   * يراقب الحافظة تلقائيًا ويلتقط روابط التحميل المباشرة وفيديوهات يوتيوب وروابط التورنت فور نسخها.
-6. **دعم روابط التورنت المغناطيسية (Magnet Links Helper):**
-   * عند نسخ أو إدخال رابط تورنت (Magnet Link)، يكتشفه التطبيق تلقائيًا ويعرض عليك فتحه فوراً في برنامج التورنت الافتراضي لديك (مثل qBittorrent).
-7. **إدماج كامل بالمتصفحات (Chrome / Edge / Brave / Firefox Integration):**
-   * اعتراض التحميلات تلقائياً من المتصفح وإرسالها للتطبيق مع نافذة منبثقة عائمة (Floating Widget) على صفحات اليوتيوب فوق مشغل الفيديو.
-8. **محدد السرعة والجدولة الزمنية (Speed Limiter & Scheduler):**
-   * تحكم كامل في سرعة التحميل، مع إمكانية جدولة التحميلات للبدء والإيقاف في أوقات محددة تلقائياً.
-9. **العمل في الخلفية ونافذة الاكتمال (Background Tray & Completion Dialog):**
-   * أيقونة مصغرة في شريط المهام (System Tray)، مع إشعارات ويندوز وتنبيهات صوتية ونافذة "اكتمل التحميل" الاحترافية لفتح الملف أو مكانه مباشرة.
+**TurboDown** is a highly optimized, feature-rich, and open-source download manager and accelerator written in Python. Designed to maximize your download speeds with a stunning modern dark-themed GUI and a powerful asynchronous multi-threaded engine, TurboDown represents the ultimate open-source alternative to proprietary download utilities.
 
 ---
 
-## 📸 لقطات الشاشة (Screenshots)
+## 🚀 Key Features
 
-> سيتم إضافة لقطات الشاشة قريباً
+1. **Ultra-Fast Multi-Threaded Engine (64 to 128 Connections):**
+   * Automatically splits files into up to **128 concurrent connections**, maximizing your bandwidth usage to download files up to 10x faster.
+2. **Robust Pause & Resume (Cooperative Control):**
+   * Engineered with an advanced async queue system to safely pause and resume downloads at any time without file corruption or locks.
+3. **Smart Auto-Retry with Exponential Backoff:**
+   * Automatically handles transient network issues by retrying downloads up to **10 times** per connection part, using an intelligent backoff delay.
+4. **Professional YouTube Video Grabber:**
+   * Instantly extract and download YouTube videos in any resolution (4K, 1080p, 720p) or extract high-quality audio (MP3, M4A) with a single click.
+5. **Smart Clipboard Monitor:**
+   * Runs in the background and automatically intercepts direct download links, YouTube video links, or torrent/magnet links from your clipboard.
+6. **Magnet Link & Torrent Forwarding:**
+   * Instantly detects magnet links and prompts you to launch them directly in your default BitTorrent client (e.g., qBittorrent).
+7. **Complete Browser Integration (Chrome, Edge, Brave, Firefox):**
+   * Features dedicated web extensions that automatically intercept standard browser downloads and inject a professional, floating overlay directly onto the YouTube video player.
+8. **Speed Limiter & Download Scheduler:**
+   * Manage your network consumption with custom speed limits, or schedule your downloads to start and stop at specified times.
+9. **System Tray Integration & Notifications:**
+   * Minimizes silently to the system tray near the clock, keeping you updated with native OS notifications, sound prompts, and a post-download action dialogue.
 
 ---
 
-## 🛠️ متطلبات التشغيل والتثبيت (Installation)
+## 🛠️ Installation & Setup
 
-### 1. تثبيت Python
-تأكد من تثبيت [Python 3.10+](https://www.python.org/downloads/) (أو أحدث).
+### 1. Install Python
+Ensure you have [Python 3.10+](https://www.python.org/downloads/) installed on your system.
 
-### 2. تثبيت المكتبات المطلوبة (Install Python Requirements)
-افتح Terminal في مجلد المشروع وشغل الأمر التالي:
+> [!IMPORTANT]
+> Make sure to check the **"Add Python to PATH"** option during installation.
 
+### 2. Install Required Dependencies
+Open a terminal in the project directory and run:
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. تثبيت FFMPEG (اختياري - لدمج فيديوهات اليوتيوب عالية الدقة)
-لتحميل فيديوهات اليوتيوب بجودة عالية (مثل 1080p أو 4K)، يقوم يوتيوب بفصل الصوت عن الفيديو. يحتاج البرنامج إلى أداة **FFMPEG** لدمجهما تلقائيًا.
+### 3. FFMPEG Setup (Optional - For Merging High-Definition YouTube Video and Audio)
+To merge 1080p/4K YouTube video streams with their corresponding audio streams, the app relies on **FFMPEG**.
 
-> **ملاحظة:** البرنامج يحاول تحميل ffmpeg تلقائياً عبر مكتبة `imageio-ffmpeg`. إذا لم يعمل تلقائياً:
-
-**طريقة التثبيت اليدوي على Windows:**
-1. قم بتحميل FFMPEG من الرابط الرسمي: [ffmpeg.org/download](https://ffmpeg.org/download.html)
-2. فك الضغط عن الملف وانقل المجلد الناتج إلى مكان مناسب.
-3. أضف مسار المجلد `bin` إلى متغيرات البيئة للويندوز (**System Environment Variables → PATH**).
-4. تأكد من التثبيت بفتح cmd وكتابة: `ffmpeg -version`
-
----
-
-## 🔌 طريقة تثبيت إضافات المتصفح (Browser Extension Setup)
-
-### لمتصفحات Google Chrome / Edge / Brave:
-1. افتح صفحة الإضافات في متصفحك: `chrome://extensions` (أو `edge://extensions`).
-2. قم بتفعيل **وضع المطور (Developer Mode)** من الزاوية العلوية.
-3. اضغط على زر **تحميل حزمة غير مضغوطة (Load unpacked)**.
-4. اختر المجلد المسمى **`extension`** الموجود داخل مجلد المشروع.
-
-### لمتصفح Firefox:
-1. افتح صفحة المطورين في فايرفوكس: `about:debugging#/runtime/this-firefox`.
-2. اضغط على زر **Load Temporary Add-on**.
-3. اختر ملف `manifest.json` من المجلد المسمى **`extension_firefox`**.
+* The program attempts to download FFMPEG automatically via the `imageio-ffmpeg` library.
+* If it fails to run automatically, follow these manual steps:
+  1. Download FFMPEG from [ffmpeg.org](https://ffmpeg.org/download.html).
+  2. Extract the file and place it in a permanent folder.
+  3. Add the path to the `bin` directory of FFMPEG to your system's Environment Variables (**PATH**).
+  4. Verify the installation by running `ffmpeg -version` in your command prompt.
 
 ---
 
-## 🚀 طريقة التشغيل (How to Run)
+## 🔌 Browser Extension Installation
 
-### الطريقة 1: عبر سطر الأوامر
+### For Google Chrome / Microsoft Edge / Brave:
+1. Open the extensions page in your browser: `chrome://extensions` (or `edge://extensions`).
+2. Enable **Developer Mode** using the toggle switch in the top-right corner.
+3. Click on the **Load unpacked** button.
+4. Select the **`extension`** folder located inside the TurboDown directory.
+
+### For Mozilla Firefox:
+1. Open the debugging page in Firefox: `about:debugging#/runtime/this-firefox`.
+2. Click on the **Load Temporary Add-on...** button.
+3. Choose the `manifest.json` file inside the **`extension_firefox`** folder.
+
+---
+
+## 🚀 How to Run
+
+### Method 1: Using the Batch Launcher (Windows)
+Double-click the **`start.bat`** file in the root of the project directory. This batch file automatically verifies your Python installation, installs missing dependencies, and boots the application.
+
+### Method 2: Silent Launch (No Console Window)
+Double-click the **`TurboDown.vbs`** file. This starts the application silently in the background (minimized to your system tray) without opening a black command prompt window.
+
+### Method 3: Command Line
 ```bash
 python app.py
 ```
 
-### الطريقة 2: عبر ملف التشغيل (Windows)
-انقر مرتين على ملف `start.bat` الموجود في مجلد المشروع.
-
-> تأكد من بقاء البرنامج مفتوحاً أو يعمل في الخلفية (في شريط المهام بجانب الساعة) لتستمر إضافات المتصفح في اعتراض التحميلات وإرسالها إليه.
-
 ---
 
-## 📂 هيكل المشروع (Project Structure)
+## 📂 Project Structure
 
 ```
 TurboDown/
-├── app.py                  # واجهة المستخدم الرسومية (GUI)
-├── downloader.py            # محرك التحميل غير المتزامن (Async Engine)
-├── video_grabber.py         # جالب فيديوهات يوتيوب (yt-dlp wrapper)
-├── integration_server.py    # خادم API للمتصفح (Flask API)
-├── start.bat               # ملف تشغيل سريع (Windows)
-├── requirements.txt         # التبعيات المطلوبة
-├── README.md               # هذا الملف
-├── LICENSE                  # رخصة MIT
-├── .gitignore              # ملفات مستثناة من Git
-├── extension/              # إضافة Chrome/Edge/Brave (Manifest V3)
-│   ├── manifest.json
-│   ├── background.js
-│   ├── content.js
-│   ├── popup.html
-│   ├── popup.js
-│   └── icon.png
-└── extension_firefox/       # إضافة Firefox (Manifest V2)
-    ├── manifest.json
-    ├── background.js
-    ├── content.js
-    ├── popup.html
-    ├── popup.js
-    └── icon.png
+├── app.py                  # Main GUI Application (CustomTkinter)
+├── downloader.py            # High-Performance Asynchronous Download Engine
+├── video_grabber.py         # YouTube Video Scraper & yt-dlp wrapper
+├── integration_server.py    # Flask Local Server for Browser Extension integration
+├── start.bat               # Interactive dependency installer and launcher
+├── TurboDown.vbs           # Silent background windowless launcher
+├── requirements.txt         # Required Python packages
+├── README.md               # Project documentation
+├── LICENSE                  # MIT License
+├── assets/                 # Repository assets
+│   └── banner.png          # Promotional banner
+├── extension/              # Chrome/Edge Extension (Manifest V3)
+└── extension_firefox/       # Firefox Extension (Manifest V2)
 ```
 
 ---
 
-## 🤝 المساهمة (Contributing)
-
-المساهمات مرحب بها! يرجى فتح Issue أو Pull Request لأي تحسين أو إصلاح.
-
----
-
-## 📄 الترخيص (License)
-
-هذا المشروع متوفر تحت رخصة **MIT** - تصفح ملف `LICENSE` لمزيد من التفاصيل.
-
----
-
-# TurboDown - Ultimate Download Manager
-
-**TurboDown** is a multi-threaded, highly optimized, open-source download manager built in Python. Designed to be a powerful, free download accelerator with a state-of-the-art dark-themed GUI and an ultra-fast download engine.
-
-### Highlights
-* **64-128 Concurrent Connections:** Turbocharges downloads by opening up to 128 parts concurrently.
-* **Smart Cooperative Stop:** Completely robust pause/resume without file corruption or locks.
-* **Auto-retry with Exponential Backoff:** 10 retries per part with smart wait times on network drops.
-* **FFMPEG Integration:** Auto-merges high-definition YouTube video streams (1080p, 4K) with audio.
-* **Browser Extension:** Advanced Manifest V3 extension for Chrome/Edge/Brave and MV2 for Firefox. Injects a floating download panel on YouTube players and intercepts standard browser downloads.
-* **Magnet Link & Torrent Helper:** Auto-detects and forwards magnet/torrent links to your default Torrent client.
+## 📄 License
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
