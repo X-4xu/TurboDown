@@ -36,32 +36,33 @@ DEFAULT_CONNECTIONS = 32  # Connections per download
 # THEME COLORS (Professional dark look)
 # ============================================================
 COLORS = {
-    "bg_dark": "#1a1a2e",
-    "bg_medium": "#16213e",
-    "bg_light": "#0f3460",
-    "accent": "#e94560",
-    "accent_hover": "#c73e54",
-    "green": "#00b894",
-    "green_hover": "#00a381",
-    "blue": "#0984e3",
+    "bg_dark": "#ffffff",         # White background for main table
+    "bg_medium": "#f1f2f6",       # Light gray for headers
+    "bg_light": "#dfe6e9",        # Mid gray for hover
+    "accent": "#0984e3",          # Blue accent
+    "accent_hover": "#0770c2",
+    "green": "#2ed573",           # Bright green for downloads/progress
+    "green_hover": "#26af5f",
+    "blue": "#0984e3",            # IDM Blue
     "blue_hover": "#0770c2",
-    "orange": "#fdcb6e",
-    "red": "#d63031",
-    "red_hover": "#b52828",
-    "text": "#dfe6e9",
-    "text_dim": "#636e72",
-    "row_hover": "#1e3a5f",
-    "row_selected": "#2d5f8a",
-    "toolbar_bg": "#0a1628",
-    "sidebar_bg": "#0d1b2a",
-    "progress_bg": "#2d3436",
-    "progress_fill": "#00b894",
-    "completed": "#00b894",
+    "orange": "#ffa502",          # Orange for paused
+    "red": "#ff4757",             # Red for failed
+    "red_hover": "#e03d4b",
+    "text": "#2f3542",            # Dark gray/black for text (extremely readable)
+    "text_dim": "#747d8c",        # Soft gray for subtext
+    "row_hover": "#e3f2fd",       # Light blue row hover (IDM style)
+    "row_selected": "#b3e5fc",    # Blue selected row (IDM style)
+    "toolbar_bg": "#f1f2f6",      # Light gray toolbar background
+    "sidebar_bg": "#f1f2f6",      # Light gray sidebar background
+    "progress_bg": "#f1f2f6",      # Background of progress bar
+    "progress_fill": "#2ed573",    # Green progress bar (IDM style)
+    "completed": "#2ed573",
     "downloading": "#0984e3",
-    "paused": "#fdcb6e",
-    "failed": "#d63031",
-    "queued": "#636e72",
+    "paused": "#ffa502",
+    "failed": "#ff4757",
+    "queued": "#747d8c",
 }
+
 
 
 def create_tray_image():
@@ -82,7 +83,7 @@ class TurboDownApp(ctk.CTk):
         super().__init__()
 
         # ---- Theme ----
-        ctk.set_appearance_mode("dark")
+        ctk.set_appearance_mode("light")
         ctk.set_default_color_theme("blue")
 
         # ---- Window Setup ----
@@ -181,12 +182,12 @@ class TurboDownApp(ctk.CTk):
 
     def setup_menubar(self):
         """Create professional menu bar."""
-        self.menu_bar = tk.Menu(self, bg="#0a1628", fg="white",
-                                activebackground="#0f3460", activeforeground="white")
+        self.menu_bar = tk.Menu(self, bg="#ffffff", fg="#2f3542",
+                                activebackground="#0984e3", activeforeground="white")
 
         # Tasks menu
-        tasks_menu = tk.Menu(self.menu_bar, tearoff=0, bg="#1a1a2e", fg="white",
-                              activebackground="#0f3460", activeforeground="white")
+        tasks_menu = tk.Menu(self.menu_bar, tearoff=0, bg="#ffffff", fg="#2f3542",
+                              activebackground="#0984e3", activeforeground="white")
         tasks_menu.add_command(label="Add New Download (إضافة رابط)    Ctrl+N", command=self.show_add_url_dialog)
         tasks_menu.add_command(label="Add YouTube Download (يوتيوب)    Ctrl+Y", command=self.show_youtube_dialog)
         tasks_menu.add_command(label="Batch Download from File (تحميل دفعي)", command=self.show_batch_import_dialog)
@@ -198,8 +199,8 @@ class TurboDownApp(ctk.CTk):
         self.menu_bar.add_cascade(label="Tasks", menu=tasks_menu)
 
         # Downloads menu
-        dl_menu = tk.Menu(self.menu_bar, tearoff=0, bg="#1a1a2e", fg="white",
-                           activebackground="#0f3460", activeforeground="white")
+        dl_menu = tk.Menu(self.menu_bar, tearoff=0, bg="#ffffff", fg="#2f3542",
+                           activebackground="#0984e3", activeforeground="white")
         dl_menu.add_command(label="Resume (استئناف)", command=self.resume_selected)
         dl_menu.add_command(label="Pause (إيقاف)", command=self.pause_selected)
         dl_menu.add_command(label="Delete (حذف)", command=self.delete_selected)
@@ -212,15 +213,15 @@ class TurboDownApp(ctk.CTk):
         self.menu_bar.add_cascade(label="Downloads", menu=dl_menu)
 
         # Options menu
-        opt_menu = tk.Menu(self.menu_bar, tearoff=0, bg="#1a1a2e", fg="white",
-                            activebackground="#0f3460", activeforeground="white")
+        opt_menu = tk.Menu(self.menu_bar, tearoff=0, bg="#ffffff", fg="#2f3542",
+                            activebackground="#0984e3", activeforeground="white")
         opt_menu.add_command(label="Settings (إعدادات)", command=self.show_settings_dialog)
         opt_menu.add_command(label="Clear Finished (حذف المكتمل)", command=self.clear_finished)
         self.menu_bar.add_cascade(label="Options", menu=opt_menu)
 
         # Help menu
-        help_menu = tk.Menu(self.menu_bar, tearoff=0, bg="#1a1a2e", fg="white",
-                             activebackground="#0f3460", activeforeground="white")
+        help_menu = tk.Menu(self.menu_bar, tearoff=0, bg="#ffffff", fg="#2f3542",
+                             activebackground="#0984e3", activeforeground="white")
         help_menu.add_command(label=f"About {APP_NAME}", command=self.show_about)
         self.menu_bar.add_cascade(label="Help", menu=help_menu)
 
