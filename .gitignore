@@ -1,0 +1,44 @@
+# TurboDown - Download Manager
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyd
+*.dll
+
+# Distribution
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Virtual environments
+venv/
+env/
+.env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Binary tools (auto-generated from imageio-ffmpeg)
+bin/
+
+# App data
+downloads.json
+*.meta
+*.meta.tmp
+*.part
+*.tmp
+
+# Logs
+*.log

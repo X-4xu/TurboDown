@@ -1,0 +1,11 @@
+customtkinter
+requests
+yt-dlp
+pyperclip
+flask
+flask_cors
+aiohttp
+aiofiles
+pystray
+Pillow
+imageio-ffmpeg

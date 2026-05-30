@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TurboDown</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 360px;
+      min-height: 200px;
+      font-family: "Segoe UI", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      overflow-x: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #16213e, #0f3460);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .header-left { display: flex; align-items: center; gap: 10px; }
+
+    .header-icon {
+      width: 28px; height: 28px;
+      background: linear-gradient(135deg, #1a73e8, #4fc3f7);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .header-icon svg { width: 18px; height: 18px; fill: white; }
+    .header-title { font-size: 16px; font-weight: 600; color: #fff; letter-spacing: 0.3px; }
+    .header-version { font-size: 11px; color: rgba(255,255,255,0.4); font-weight: 400; }
+
+    .status-badge {
+      display: flex; align-items: center; gap: 6px;
+      padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 500;
+    }
+
+    .status-badge.connected { background: rgba(30,142,62,0.2); color: #81c784; }
+    .status-badge.disconnected { background: rgba(217,48,37,0.2); color: #e57373; }
+
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .status-badge.connected .status-dot { background: #4caf50; box-shadow: 0 0 6px rgba(76,175,80,0.6); animation: pulse 2s infinite; }
+    .status-badge.disconnected .status-dot { background: #f44336; box-shadow: 0 0 6px rgba(244,67,54,0.5); }
+
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+    .section { padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 10px; font-weight: 600; }
+
+    .toggle-row { display: flex; align-items: center; justify-content: space-between; }
+    .toggle-info { display: flex; flex-direction: column; gap: 2px; }
+    .toggle-label { font-size: 14px; font-weight: 500; color: #e0e0e0; }
+    .toggle-sublabel { font-size: 11px; color: #777; }
+
+    .toggle-switch { position: relative; width: 44px; height: 24px; flex-shrink: 0; }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+
+    .toggle-slider {
+      position: absolute; cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #444; border-radius: 12px; transition: 0.3s;
+    }
+
+    .toggle-slider::before {
+      content: ""; position: absolute;
+      width: 18px; height: 18px; border-radius: 50%;
+      left: 3px; bottom: 3px; background: white; transition: 0.3s;
+    }
+
+    .toggle-switch input:checked + .toggle-slider { background: #1a73e8; }
+    .toggle-switch input:checked + .toggle-slider::before { transform: translateX(20px); }
+
+    .url-input-group { display: flex; gap: 8px; }
+
+    .url-input {
+      flex: 1; padding: 10px 12px;
+      background: #16213e; border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; color: #e0e0e0; font-size: 13px; outline: none; transition: border-color 0.2s;
+    }
+
+    .url-input::placeholder { color: #555; }
+    .url-input:focus { border-color: #1a73e8; }
+
+    .url-send-btn {
+      padding: 10px 16px;
+      background: linear-gradient(135deg, #1a73e8, #1557b0);
+      border: none; border-radius: 8px; color: white;
+      font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    }
+
+    .url-send-btn:hover { background: linear-gradient(135deg, #1557b0, #0d47a1); transform: translateY(-1px); }
+    .url-send-btn:active { transform: translateY(0); }
+    .url-send-btn:disabled { background: #444; cursor: not-allowed; transform: none; }
+
+    .url-feedback { font-size: 12px; margin-top: 6px; min-height: 16px; }
+    .url-feedback.success { color: #81c784; }
+    .url-feedback.error { color: #e57373; }
+
+    .history-list { list-style: none; }
+
+    .history-item {
+      padding: 8px 10px; background: rgba(255,255,255,0.03);
+      border-radius: 6px; margin-bottom: 6px;
+      display: flex; align-items: center; gap: 8px; transition: background 0.15s;
+    }
+
+    .history-item:hover { background: rgba(255,255,255,0.06); }
+
+    .history-icon {
+      width: 28px; height: 28px; border-radius: 6px;
+      background: rgba(26,115,232,0.15);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+
+    .history-icon svg { width: 14px; height: 14px; fill: #4fc3f7; }
+    .history-details { flex: 1; min-width: 0; }
+    .history-filename { font-size: 12px; color: #ccc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .history-time { font-size: 10px; color: #666; margin-top: 1px; }
+    .history-empty { text-align: center; color: #555; font-size: 12px; padding: 16px 0; }
+    .footer { padding: 10px 20px; text-align: center; font-size: 10px; color: #444; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-left">
+      <div class="header-icon">
+        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+      </div>
+      <div>
+        <div class="header-title">TurboDown</div>
+        <div class="header-version">v2.0.0</div>
+      </div>
+    </div>
+    <div id="statusBadge" class="status-badge disconnected">
+      <span class="status-dot"></span>
+      <span id="statusText">Checking...</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="toggle-row">
+      <div class="toggle-info">
+        <span class="toggle-label">Intercept Downloads</span>
+        <span class="toggle-sublabel">Catch browser downloads automatically</span>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="interceptToggle" checked>
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Add URL Manually</div>
+    <div class="url-input-group">
+      <input type="text" id="urlInput" class="url-input" placeholder="https://example.com/file.zip">
+      <button id="urlSendBtn" class="url-send-btn">Send</button>
+    </div>
+    <div id="urlFeedback" class="url-feedback"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Recent Downloads</div>
+    <ul id="historyList" class="history-list">
+      <li class="history-empty">No downloads yet</li>
+    </ul>
+  </div>
+
+  <div class="footer">TurboDown Extension &bull; Local App on port 9000</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
